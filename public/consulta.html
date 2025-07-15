@@ -15,6 +15,21 @@
 </head>
 <body>
   <h2>Consulta de Inspeções</h2>
+
+  <div style="margin-bottom: 20px;">
+    <label>Inspetor: <input type="text" id="filtroInspetor"></label>
+    <label>Resultado:
+      <select id="filtroResultado">
+        <option value="">Todos</option>
+        <option value="Aprovado">Aprovado</option>
+        <option value="Reprovado">Reprovado</option>
+      </select>
+    </label>
+    <label>Data inicial: <input type="date" id="filtroDataInicio"></label>
+    <label>Data final: <input type="date" id="filtroDataFim"></label>
+    <button onclick="carregarInspecoes()">Filtrar</button>
+  </div>
+
   <table id="tabelaInspecoes">
     <thead>
       <tr>
@@ -32,13 +47,25 @@
 
   <script>
     async function carregarInspecoes() {
-      const resposta = await fetch('/api/inspecoes');
+      const inspetor = document.getElementById('filtroInspetor').value;
+      const resultado = document.getElementById('filtroResultado').value;
+      const dataInicio = document.getElementById('filtroDataInicio').value;
+      const dataFim = document.getElementById('filtroDataFim').value;
+
+      const params = new URLSearchParams();
+      if (inspetor) params.append('inspetor', inspetor);
+      if (resultado) params.append('resultado', resultado);
+      if (dataInicio) params.append('inicio', dataInicio);
+      if (dataFim) params.append('fim', dataFim);
+
+      const resposta = await fetch('/api/inspecoes?' + params.toString());
       const inspecoes = await resposta.json();
 
       const tbody = document.querySelector('#tabelaInspecoes tbody');
+      tbody.innerHTML = ''; // limpa a tabela
+
       inspecoes.forEach(inspecao => {
         const tr = document.createElement('tr');
-
         const itens = JSON.parse(inspecao.itens_verificados || '[]').join(', ');
 
         tr.innerHTML = `
@@ -50,12 +77,13 @@
           <td class="${inspecao.resultado === 'Aprovado' ? 'tag-aprovado' : 'tag-reprovado'}">${inspecao.resultado}</td>
           <td>${inspecao.observacoes || ''}</td>
         `;
-
         tbody.appendChild(tr);
       });
     }
 
+    // Carrega inicialmente sem filtro
     carregarInspecoes();
   </script>
 </body>
+
 </html>

@@ -36,9 +36,36 @@ app.post('/api/inspecao', (req, res) => {
 
 // Rota para listar todas as inspeções
 app.get('/api/inspecoes', (req, res) => {
-  conexao.query('SELECT * FROM inspecoes ORDER BY data_inspecao DESC', (err, results) => {
+  const { inspetor, resultado, inicio, fim } = req.query;
+
+  let query = 'SELECT * FROM inspecoes WHERE 1=1';
+  const params = [];
+
+  if (inspetor) {
+    query += ' AND inspetor LIKE ?';
+    params.push('%' + inspetor + '%');
+  }
+
+  if (resultado) {
+    query += ' AND resultado = ?';
+    params.push(resultado);
+  }
+
+  if (inicio) {
+    query += ' AND data_inspecao >= ?';
+    params.push(inicio + ' 00:00:00');
+  }
+
+  if (fim) {
+    query += ' AND data_inspecao <= ?';
+    params.push(fim + ' 23:59:59');
+  }
+
+  query += ' ORDER BY data_inspecao DESC';
+
+  conexao.query(query, params, (err, results) => {
     if (err) {
-      console.error('Erro ao buscar inspeções:', err);
+      console.error('Erro ao buscar inspeções com filtros:', err);
       return res.status(500).send('Erro ao buscar inspeções');
     }
     res.json(results);

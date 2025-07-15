@@ -67,17 +67,24 @@
       <label>ID do Cilindro / OS</label>
       <input type="text" id="cilindroId" required>
 
-      <label>Inspetor</label>
-      <input type="text" id="inspetor" required>
 
       <label>Data da Inspeção</label>
       <input type="datetime-local" id="data" required>
 
+      <label>Inspetor</label>
+      <select name="inspetor" id="inspetor" required>
+        <option value="">Selecione</option>
+        <option value="Clovis de Assis">Clovis de Assis</option>
+        <option value="Gilson Gonlçalves">Gilson Gonlçalves</option>
+        <option value="Saulo Cunha">Saulo Cunha</option>
+        <option value="Thiago Barbosa">Thiago Barbosa</option>
+      </select>
+
       <label>Itens Verificados</label>
       <label><input type="checkbox" value="Pintura"> Pintura</label>
-      <label><input type="checkbox" value="Vazamentos"> Vazamentos</label>
+      <label><input type="checkbox" value="Travamento"> Travamento</label>
       <label><input type="checkbox" value="Dimensões"> Dimensões</label>
-      <label><input type="checkbox" value="Pressão de Teste"> Pressão de Teste</label>
+      <label><input type="checkbox" value="Acabamento"> Acabamento</label>
 
       <label>Observações</label>
       <textarea id="obs" rows="3"></textarea>
