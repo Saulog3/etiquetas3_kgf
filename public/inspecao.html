@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Inspeção Final</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+    .form-container { background: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; }
+    button { margin-top: 20px; padding: 10px; background: green; color: white; border: none; cursor: pointer; border-radius: 5px; }
+    .resultado { margin-top: 15px; background: #e0ffe0; padding: 10px; border-radius: 5px; display: none; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registro de Inspeção Final</h2>
+    <form id="formInspecao">
+      <label>ID do Cilindro / OS</label>
+      <input type="text" id="cilindroId" required>
+
+      <label>Inspetor</label>
+      <input type="text" id="inspetor" required>
+
+      <label>Data da Inspeção</label>
+      <input type="datetime-local" id="data" required>
+
+      <label>Itens Verificados</label>
+      <label><input type="checkbox" value="Pintura"> Pintura</label>
+      <label><input type="checkbox" value="Vazamentos"> Vazamentos</label>
+      <label><input type="checkbox" value="Dimensões"> Dimensões</label>
+      <label><input type="checkbox" value="Pressão de Teste"> Pressão de Teste</label>
+
+      <label>Observações</label>
+      <textarea id="obs" rows="3"></textarea>
+
+      <label>Resultado</label>
+      <select id="resultado" required>
+        <option value="">Selecione</option>
+        <option value="Aprovado">Aprovado</option>
+        <option value="Reprovado">Reprovado</option>
+      </select>
+
+      <button type="submit">Registrar</button>
+    </form>
+
+    <div class="resultado" id="mensagem"></div>
+  </div>
+
+  <script>
+    document.getElementById('formInspecao').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const itensSelecionados = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+
+      const dados = {
+        cilindroId: document.getElementById('cilindroId').value,
+        inspetor: document.getElementById('inspetor').value,
+        data: document.getElementById('data').value,
+        itens: itensSelecionados,
+        obs: document.getElementById('obs').value,
+        resultado: document.getElementById('resultado').value
+      };
+
+      try {
+        const resposta = await fetch('http://localhost:3000/api/inspecao', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
+
+        const msg = document.getElementById('mensagem');
+        if (resposta.ok) {
+          msg.style.display = 'block';
+          msg.style.background = '#e0ffe0';
+          msg.textContent = 'Inspeção registrada com sucesso!';
+          document.getElementById('formInspecao').reset();
+        } else {
+          msg.style.display = 'block';
+          msg.style.background = '#ffe0e0';
+          msg.textContent = 'Erro ao registrar inspeção.';
+        }
+      } catch (erro) {
+        console.error('Erro:', erro);
+        alert('Erro na conexão com o servidor.');
+      }
+    });
+  </script>
+</body>
+</html>
