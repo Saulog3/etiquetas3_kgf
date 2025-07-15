@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div>
+        <div class="form-container" id="capture">
+            <form id="myForm">
+                <img class="imgkgf" src="../img/Logo KGF - BG - Removed - Adjusted.png" alt="">
+                <p class="title">EQUIPAMENTOS HIDRÁULICOS</p>
+                <table>
+                    <tr class="linha1">
+                        <td><label for="os">OS:</label></td>
+                        <td><input class="caixa-form" type="text" id="os" name="os"></td>
+                        <td><label for="camisa">CAMISA:</label></td>
+                        <td><input class="caixa-form" type="text" id="camisa" name="camisa"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="pedido">PEDIDO:</label></td>
+                        <td><input class="caixa-form" type="text" id="pedido" name="pedido"></td>
+                        <td><label for="haste">HASTE:</label></td>
+                        <td><input class="caixa-form" type="text" id="haste" name="haste"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><label for="laudo">LAUDO:</label></td>
+                        <td><input class="caixa-form" type="text" id="laudo" name="laudo"></td>
+                        <td><label for="curso">CURSO:</label></td>
+                        <td><input class="caixa-form" type="text" id="curso" name="curso"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="NI">N.I:</label></td>
+                        <td><input class="caixa-form" type="text" id="NI" name="NI"></td>
+                        <td><label for="p.teste">P. TESTE:</label></td>
+                        <td><input class="caixa-form" type="text" id="p.teste" name="p.teste"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tag">TAG:</label></td>
+                        <td><input class="caixa-form" type="text" id="tag" name="tag"></td>
+                        <td><label for="p.teste">P. TRAB.:</label></td>
+                        <td><input class="caixa-form" type="text" id="p.teste" name="p.teste"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="data">DATA:</label></td>
+                        <td><input class="caixa-form" type="date" id="data" name="data" required></td>
+                        <td><label for="temp">TEMP.:</label></td>
+                        <td><input class="caixa-form" type="text" id="temp" name="temp"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="garantia">GARANT:</label></td>
+                        <td><input class="caixa-form" type="date" id="garantia" name="garantia" required></td>
+                        <td><label for="fluído">FLUÍDO:</label></td>
+                        <td><input class="caixa-form" type="text" id="fluído" name="fluído"></td>
+                    </tr>
+                    </table>
+            </form>
+        </div>
+        <div class="buttons">
+            <button id="confirmar" onclick="downloadFormAsImage()">Confirmar</button>
+            <button id="apagar" onclick="clearForm()">Apagar</button>
+            <button id="voltar"> <a href="../index.html" target="_self">Voltar</a></button>
+        </div>
+    </div>
+
+    <script>
+        function downloadFormAsImage() {
+        const form = document.getElementById('myForm');
+        if (!form.checkValidity()) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
+        // Captura o valor do campo de data
+        const dataInput = document.getElementById('data').value;
+        const garantiaInput = document.getElementById('garantia').value;
+
+        // Formata a data para DD/MM/YYYY
+        const formatarData = (data) => {
+            if (!data) return '';
+            const [ano, mes, dia] = data.split('-');
+            return `${dia}/${mes}/${ano}`;
+        };
+
+        const dataFormatada = formatarData(dataInput);
+        const garantiaFormatada = formatarData(garantiaInput);
+
+        console.log('Data formatada:', dataFormatada); // Apenas para depuração
+        console.log('Garantia formatada:', garantiaFormatada); // Apenas para depuração
+
+        const osValue = document.getElementById('os').value;
+        const fileName = osValue ? osValue + '.jpeg' : 'form.jpeg';
+
+        html2canvas(document.getElementById('capture'), {
+            scale: 2, // Aumenta a escala para melhorar a qualidade da imagem
+            useCORS: true // Garante que imagens de outros domínios sejam incluídas
+        }).then(function(canvas) {
+            const link = document.createElement('a');
+            link.download = fileName;
+            link.href = canvas.toDataURL('image/jpeg');
+            link.click();
+        });
+    }
+
+        // function downloadFormAsImage() {
+        //     const osValue = document.getElementById('os').value;
+        //     const fileName = osValue ? osValue + '.jpeg' : 'form.jpeg';
+
+        //     html2canvas(document.getElementById('capture'), {
+        //         scale: 2, // Aumenta a escala para melhorar a qualidade da imagem
+        //         useCORS: true // Garante que imagens de outros domínios sejam incluídas
+        //     }).then(function(canvas) {
+        //         const link = document.createElement('a');
+        //         link.download = fileName;
+        //         link.href = canvas.toDataURL('image/jpeg');
+        //         link.click();
+        //     });
+        // }
+
+        function clearForm() {
+            document.getElementById('myForm').reset();
+        }
+    </script>
+</body>
+</html>
+
