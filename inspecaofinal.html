@@ -26,7 +26,7 @@
     }
 
     input, textarea, select {
-      width: 100%;
+      width: 95%;
       padding: 8px;
       margin-top: 5px;
       border: 1px solid #ccc;
@@ -64,21 +64,29 @@
   <div class="form-container">
     <h2>Registro de Inspeção Final</h2>
     <form id="inspectionForm">
-      <label for="cilindroId">ID do Cilindro / OS</label>
+      <label for="cilindroId">OS</label>
       <input type="text" id="cilindroId" required>
 
-      <label for="inspetor">Responsável pela Inspeção</label>
-      <input type="text" id="inspetor" required>
+
 
       <label for="data">Data da Inspeção</label>
       <input type="datetime-local" id="data" required>
+      
+      <label for="inspetor">Responsável pela Inspeção</label>
+      <select name="inspetor" id="inspetor" required>
+        <option value="">Selecione</option>
+        <option value="Clovis de Assis">Clovis de Assis</option>
+        <option value="Gilson Gonlçalves">Gilson Gonlçalves</option>
+        <option value="Saulo Cunha">Saulo Cunha</option>
+        <option value="Thiago Barbosa">Thiago Barbosa</option>
+      </select>
 
       <label>Itens Verificados</label>
       <div class="checkboxes">
-        <label><input type="checkbox" value="Pintura"> Pintura</label><br>
-        <label><input type="checkbox" value="Vazamentos"> Vazamentos</label><br>
-        <label><input type="checkbox" value="Dimensões"> Dimensões</label><br>
-        <label><input type="checkbox" value="Pressão de Teste"> Pressão de Teste</label>
+        <label><input type="checkbox" value="Pintura"> Pintura</label required><br>
+        <label><input type="checkbox" value="Travamento"> Travamento</label required><br>
+        <label><input type="checkbox" value="Dimensões"> Dimensões</label required><br>
+        <label><input type="checkbox" value="Acabamento"> Acabamento</label required>
       </div>
 
       <label for="obs">Observações</label>
