@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(172, 172, 172);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.form-container {
+    background-image: linear-gradient(120deg, #3498db, #1707ee);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-color: black ;
+    border-width: 2px;
+    border-style: solid;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 600px;
+    color: white;
+
+}
+.caixa-form {
+    background-color: #f2f2f2;
+    color: black;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: 'Arial', sans-serif; /* Adiciona a família da fonte */
+    font-size: 14px; /* Adiciona o tamanho da fonte */
+    font-weight: bold; /* Adiciona o peso da fonte */
+    text-align: center; /* Adiciona o alinhamento do texto */
+    text-transform: uppercase; /* Adiciona a transformação do texto */
+    
+}
+
+input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid white;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: 525;
+}
+
+.buttons {
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+.imgkgf {
+    width: 130px;
+    height: 60%;
+    margin-bottom: 10px;
+    margin: auto;
+    padding-bottom: 1px;
+    display: inline-block;
+}
+.title {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+#confirmar {
+    background-color: #4CAF50;
+    color: white;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.534);
+    border-width: 1px;
+    border-radius: 10px;
+    
+}
+
+#apagar {
+    background-color: #f44336;
+    color: white;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.493);
+    border-width: 1px;
+    border-radius: 10px;
+    
+}
+

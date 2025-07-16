@@ -5,9 +5,18 @@ const conexao = require('./config/db');
 app.use(express.json()); // habilita JSON no body
 
 // Rota de teste
+// app.get('/', (req, res) => {
+//   res.send('Servidor funcionando!');
+// });
+
 app.get('/', (req, res) => {
-  res.send('Servidor funcionando!');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+app.get('/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 
 // Rota para registrar inspeção
 app.post('/api/inspecao', (req, res) => {
