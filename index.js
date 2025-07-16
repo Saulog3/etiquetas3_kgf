@@ -74,6 +74,6 @@ app.get('/api/inspecoes', (req, res) => {
 
 const PORT = 3000;
 app.use(express.static('public'));
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(3000, '0.0.0.0', () => {
+  console.log('Servidor rodando na porta 3000');
 });

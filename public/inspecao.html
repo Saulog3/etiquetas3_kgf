@@ -118,11 +118,11 @@
       };
 
       try {
-        const resposta = await fetch('http://localhost:3000/api/inspecao', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dados)
-        });
+        const resposta = await fetch('http://192.168.0.225:3000/api/inspecao', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(dados)
+})
 
         const msg = document.getElementById('mensagem');
         if (resposta.ok) {
