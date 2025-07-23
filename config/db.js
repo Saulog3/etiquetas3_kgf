@@ -7,7 +7,8 @@ const conexao = mysql.createConnection({
   database: 'sistema_inspecao'
 });
 
-conexao.connect((err) => {
+conexao.connect(
+  (err) => {
   if (err) {
     console.error('Erro ao conectar no MySQL:', err);
     return;

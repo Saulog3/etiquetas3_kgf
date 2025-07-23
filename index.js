@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const conexao = require('./config/db');
 
 app.use(express.json()); // habilita JSON no body
@@ -10,10 +11,6 @@ app.use(express.json()); // habilita JSON no body
 // });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/index.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
