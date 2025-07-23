@@ -42,10 +42,14 @@ app.post('/api/inspecao', (req, res) => {
 
 // Rota para listar todas as inspeções
 app.get('/api/inspecoes', (req, res) => {
-  const { inspetor, resultado, inicio, fim } = req.query;
+  const { inspetor, resultado, cilindro_id, inicio, fim } = req.query;
 
   let query = 'SELECT * FROM inspecoes WHERE 1=1';
   const params = [];
+  if (cilindro_id) {
+    query += ' AND cilindro_id LIKE ?';
+    params.push('%' + cilindro_id + '%');
+  }
 
   if (inspetor) {
     query += ' AND inspetor LIKE ?';
@@ -66,6 +70,7 @@ app.get('/api/inspecoes', (req, res) => {
     query += ' AND data_inspecao <= ?';
     params.push(fim + ' 23:59:59');
   }
+
 
   query += ' ORDER BY data_inspecao DESC';
 

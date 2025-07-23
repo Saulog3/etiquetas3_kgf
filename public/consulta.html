@@ -17,6 +17,8 @@
   <h2>Consulta de Inspeções</h2>
 
   <div style="margin-bottom: 20px;">
+    <label for="filtroCilindro">Cilindro:</label>
+    <input type="text" id="filtroCilindro" name="filtroCilindro">
     <label>Inspetor: <input type="text" id="filtroInspetor"></label>
     <label>Resultado:
       <select id="filtroResultado">
@@ -51,12 +53,14 @@
       const resultado = document.getElementById('filtroResultado').value;
       const dataInicio = document.getElementById('filtroDataInicio').value;
       const dataFim = document.getElementById('filtroDataFim').value;
+      const cilindro = document.getElementById('filtroCilindro').value;
 
       const params = new URLSearchParams();
       if (inspetor) params.append('inspetor', inspetor);
       if (resultado) params.append('resultado', resultado);
       if (dataInicio) params.append('inicio', dataInicio);
       if (dataFim) params.append('fim', dataFim);
+      if (cilindro) params.append('cilindro_id', cilindro);
 
       const resposta = await fetch('/api/inspecoes?' + params.toString());
       const inspecoes = await resposta.json();
