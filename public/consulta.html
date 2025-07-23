@@ -17,7 +17,7 @@
   <h2>Consulta de Inspeções</h2>
 
   <div style="margin-bottom: 20px;">
-    <label for="filtroCilindro">Cilindro:</label>
+    <label for="filtroCilindro">O.S.:</label>
     <input type="text" id="filtroCilindro" name="filtroCilindro">
     <label>Inspetor: <input type="text" id="filtroInspetor"></label>
     <label>Resultado:
@@ -27,8 +27,8 @@
         <option value="Reprovado">Reprovado</option>
       </select>
     </label>
-    <label>Data inicial: <input type="date" id="filtroDataInicio"></label>
-    <label>Data final: <input type="date" id="filtroDataFim"></label>
+    <label>Data: <input type="date" id="filtroDataInicio"></label>
+    <!-- <label>Data final: <input type="date" id="filtroDataFim"></label> -->
     <button onclick="carregarInspecoes()">Filtrar</button>
   </div>
 
@@ -36,7 +36,7 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Cilindro</th>
+        <th>OS</th>
         <th>Inspetor</th>
         <th>Data</th>
         <th>Itens</th>
@@ -52,14 +52,14 @@
       const inspetor = document.getElementById('filtroInspetor').value;
       const resultado = document.getElementById('filtroResultado').value;
       const dataInicio = document.getElementById('filtroDataInicio').value;
-      const dataFim = document.getElementById('filtroDataFim').value;
+      // const dataFim = document.getElementById('filtroDataFim').value;
       const cilindro = document.getElementById('filtroCilindro').value;
 
       const params = new URLSearchParams();
       if (inspetor) params.append('inspetor', inspetor);
       if (resultado) params.append('resultado', resultado);
       if (dataInicio) params.append('inicio', dataInicio);
-      if (dataFim) params.append('fim', dataFim);
+      // if (dataFim) params.append('fim', dataFim);
       if (cilindro) params.append('cilindro_id', cilindro);
 
       const resposta = await fetch('/api/inspecoes?' + params.toString());
