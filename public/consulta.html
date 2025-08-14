@@ -38,6 +38,22 @@
       flex-wrap: wrap; 
       gap: 30px; 
     }
+      button {
+    padding: 5px 20px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+    button:hover {
+      background: darkgreen;
+    }
+    input[type="text"], input[type="date"], select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -46,7 +62,14 @@
   <div class="nav-filtros"   style="margin-bottom: 20px;">
     <label for="filtroCilindro">O.S.:</label>
     <input type="text" id="filtroCilindro" name="filtroCilindro">
-    <label>Inspetor: <input type="text" id="filtroInspetor"></label>
+    <label>Inspetor:
+    <select name="inspetor" id="filtroInspetor">
+      <option value="">Todos</option>
+      <option value="Clovis de Assis">Clovis de Assis</option>
+      <option value="Gilson Gonlçalves">Gilson Gonlçalves</option>
+      <option value="Saulo Cunha">Saulo Cunha</option>
+      <option value="Thiago Barbosa">Thiago Barbosa</option>
+    </select>
     <label>Resultado:
       <select id="filtroResultado">
         <option value="">Todos</option>
