@@ -29,6 +29,10 @@
       color: green; 
       font-weight: bold; 
     }
+    .tag-aprovado-restricoes { 
+      color: #FFB800; 
+      font-weight: bold; 
+    }
     .tag-reprovado { 
       color: red; 
       font-weight: bold; 
@@ -74,6 +78,7 @@
       <select id="filtroResultado">
         <option value="">Todos</option>
         <option value="Aprovado">Aprovado</option>
+        <option value="Aprovado com Restrições">Aprovado com Restrições</option>
         <option value="Reprovado">Reprovado</option>
       </select>
     </label>
@@ -128,7 +133,7 @@
           <td>${inspecao.inspetor}</td>
           <td>${new Date(inspecao.data_inspecao).toLocaleString('pt-BR')}</td>
           <td>${itens}</td>
-          <td class="${inspecao.resultado === 'Aprovado' ? 'tag-aprovado' : 'tag-reprovado'}">${inspecao.resultado}</td>
+          <td class="${inspecao.resultado === 'Aprovado' ? 'tag-aprovado' : inspecao.resultado === 'Aprovado com Restrições' ? 'tag-aprovado-restricoes' : 'tag-reprovado'}">${inspecao.resultado}</td>
           <td>${inspecao.observacoes || ''}</td>
         `;
         tbody.appendChild(tr);
