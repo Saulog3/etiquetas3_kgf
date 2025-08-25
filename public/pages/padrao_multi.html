@@ -147,8 +147,8 @@
                         <td><label for="garantia">GARANTIA:</label></td>
                     </tr>
                     <tr>
-                        <td><input value="08/2025" class="caixa-form2" type="text" id="data" name="data"></td>
-                        <td><input value="08/2026" class="caixa-form2" type="text" id="garantia" name="garantia"></td>
+                        <td><input class="caixa-form2" type="text" id="data" name="data"></td>
+                        <td><input class="caixa-form2" type="text" id="garantia" name="garantia"></td>
                     </tr>
                 </table>
               
@@ -163,6 +163,28 @@
     </div>
 
     <script>
+        // Função para preencher automaticamente as datas ao carregar a página
+        window.onload = function() {
+            preencherDatas();
+        };
+        
+        function preencherDatas() {
+            const dataAtual = new Date();
+            const mesAtual = dataAtual.getMonth() + 1; // Mês começa em 0 (janeiro)
+            const anoAtual = dataAtual.getFullYear();
+            
+            // Formata a data atual (mês/ano)
+            const dataFormatada = (mesAtual < 10 ? '0' + mesAtual : mesAtual) + '/' + anoAtual;
+            
+            // Calcula a data de garantia (um ano a mais)
+            const anoGarantia = anoAtual + 1;
+            const dataGarantia = (mesAtual < 10 ? '0' + mesAtual : mesAtual) + '/' + anoGarantia;
+            
+            // Preenche os campos
+            document.getElementById('data').value = dataFormatada;
+            document.getElementById('garantia').value = dataGarantia;
+        }
+        
         function downloadFormAsImage() {
             const osValue = document.getElementById('os').value;
             const fileName = osValue ? osValue + '.jpeg' : 'form.jpeg';
@@ -180,6 +202,8 @@
 
         function clearForm() {
             document.getElementById('myForm').reset();
+            // Redefine as datas após limpar o formulário
+            preencherDatas();
         }
         
     </script>
