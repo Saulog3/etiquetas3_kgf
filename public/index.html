@@ -15,11 +15,17 @@
     <h1 class="text-3xl font-bold mt-10">PLAQUETAS KGF</h1>
     <main>
         
-        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700"><a href="../pages/padrao_multi.html" target="_self">Plaqueta - <strong>Padrão</strong></a></button>
-        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700"><a href="../pages/padrao_usiminas.html" target="_self">Plaqueta - <strong>Usiminas Grande</strong></a></button>
-        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700"><a href="pages/padrao_csn.html" target="_self" alt="Em Contrução">Plaqueta - <strong>CSN Grande</strong></a></button>
+        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('../pages/padrao_multi.html')">Plaqueta - <strong>Padrão</strong></button>
+        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('../pages/padrao_usiminas.html')">Plaqueta - <strong>Usiminas Grande</strong></button>
+        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('pages/padrao_csn.html')" title="Em Construção">Plaqueta - <strong>CSN Grande</strong></button>
 
     </main>
 
 </body>
+    <script>
+        function irParaPagina(url) {
+            window.location.href = url;
+        }
+
+    </script>
 </html>
