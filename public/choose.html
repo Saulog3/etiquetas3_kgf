@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Menu - Plaquetas</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style/style-index.css">
+    
+
+</head>
+
+<body class="bg-gray-100 text-center">
+    <h1 class="text-3xl font-bold mt-10">CONTROLE DE QUALIDADE - KGF HIDRÁULICOS</h1>
+    <h2 class="text-3xl font-bold ">Sistema de Plaquetas</h2>
+    <main class="principal">
+        
+        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('../pages/padrao_multi.html')">Plaqueta - <strong>Padrão</strong></button>
+
+        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('../pages/padrao_usiminas.html')">Plaqueta - <strong>Usiminas Grande</strong></button>
+
+        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('pages/padrao_csn.html')" title="Em Construção">Plaqueta - <strong>CSN Grande</strong></button>
+
+    </main>
+
+</body>
+    <script>
+        function irParaPagina(url) {
+            window.location.href = url;
+        }
+
+    </script>
+</html>
