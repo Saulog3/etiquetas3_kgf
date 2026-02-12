@@ -117,7 +117,7 @@
       // if (dataFim) params.append('fim', dataFim);
       if (cilindro) params.append('cilindro_id', cilindro);
 
-      const resposta = await fetch('/api/inspecoes?' + params.toString());
+      const resposta = await fetch('/api/inspecao?' + params.toString());
       const inspecoes = await resposta.json();
 
       const tbody = document.querySelector('#tabelaInspecoes tbody');
@@ -125,16 +125,22 @@
 
       inspecoes.forEach(inspecao => {
         const tr = document.createElement('tr');
-        const itens = JSON.parse(inspecao.itens_verificados || '[]').join(', ');
+        const itensRaw = inspecao.itens ?? inspecao.itens_verificados ?? [];
+        const itens = Array.isArray(itensRaw)
+          ? itensRaw.join(', ')
+          : JSON.parse(itensRaw || '[]').join(', ');
+        const os = inspecao.cilindroId ?? inspecao.cilindro_id ?? '';
+        const data = inspecao.data ?? inspecao.data_inspecao;
+        const dataFormatada = data ? new Date(data).toLocaleString('pt-BR') : '';
 
         tr.innerHTML = `
           <td>${inspecao.id}</td>
-          <td>${inspecao.cilindro_id}</td>
+          <td>${os}</td>
           <td>${inspecao.inspetor}</td>
-          <td>${new Date(inspecao.data_inspecao).toLocaleString('pt-BR')}</td>
+          <td>${dataFormatada}</td>
           <td>${itens}</td>
           <td class="${inspecao.resultado === 'Aprovado' ? 'tag-aprovado' : inspecao.resultado === 'Aprovado com Restrições' ? 'tag-aprovado-restricoes' : 'tag-reprovado'}">${inspecao.resultado}</td>
-          <td>${inspecao.observacoes || ''}</td>
+          <td>${inspecao.obs ?? inspecao.observacoes ?? ''}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -146,3 +152,5 @@
 </body>
 
 </html>
+
+
