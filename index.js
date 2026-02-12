@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-const inspecoesRoutes = require('./routes/inspecoes.routes');
+const inspecoesRoutes = require('./routes/inspecoes.routes.js');
 
 app.use('/api/inspecao', inspecoesRoutes);
 

@@ -25,7 +25,31 @@ exports.criarInspecao = (req, res) => {
 };
 
 exports.listarInspecoes = (req, res) => {
-  const query = `
+  const { inspetor, resultado, cilindro_id: cilindroIdQuery, cilindroId, inicio } = req.query;
+  const filtros = [];
+  const valores = [];
+
+  if (inspetor) {
+    filtros.push('inspetor = ?');
+    valores.push(inspetor);
+  }
+
+  if (resultado) {
+    filtros.push('resultado = ?');
+    valores.push(resultado);
+  }
+
+  if (cilindroIdQuery || cilindroId) {
+    filtros.push('cilindro_id = ?');
+    valores.push(cilindroIdQuery || cilindroId);
+  }
+
+  if (inicio) {
+    filtros.push('data_inspecao >= ?');
+    valores.push(`${inicio} 00:00:00`);
+  }
+
+  let query = `
     SELECT
       id,
       cilindro_id AS cilindroId,
@@ -35,10 +59,15 @@ exports.listarInspecoes = (req, res) => {
       observacoes AS obs,
       resultado
     FROM inspecoes
-    ORDER BY data_inspecao DESC, id DESC
   `;
 
-  conexao.query(query, (err, resultados) => {
+  if (filtros.length > 0) {
+    query += ` WHERE ${filtros.join(' AND ')}`;
+  }
+
+  query += ' ORDER BY data_inspecao DESC, id DESC';
+
+  conexao.query(query, valores, (err, resultados) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Erro ao listar inspeções');
