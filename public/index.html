@@ -3,36 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Menu - Plaquetas</title>
+    <title>Menu - Plaquetas</title>
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style/style-index.css">
 </head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <img class="logo" src="img/Logo KGF - BG - Removed - Adjusted.png" alt="Logo KGF">
+            <h1 class="title">CONTROLE DE QUALIDADE - KGF HIDRAULICOS</h1>
+        </header>
 
-<header>
-    <img class="logotipo" src="img/Logo KGF - BG - Removed - Adjusted.png" alt="logo">
-    <h1 class="h1-header">CONTROLE DE QUALIDADE - KGF HIDRÁULICOS</h1>
-</header>
+        <main class="menu-card" aria-label="Menu principal">
+            <h2 class="menu-title">Acessos Rapidos</h2>
 
-<body class="bg-gray-100 text-center">
+            <div class="menu-grid menu-grid-3">
+                <button class="menu-button" onclick="irParaPagina('../pages/resumo_inspecao.html')">
+                    Resumo - <strong>Inspecoes</strong>
+                </button>
 
-    <main>
-        
-        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('../pages/resumo_inspecao.html')">Resumo - <strong>Inspeções</strong></button>
+                <button class="menu-button" onclick="irParaPagina('../pages/libcilindros.html')">
+                    Resultado <strong>Liberacao de Cilindros</strong>
+                </button>
 
-        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('../pages/libcilindros.html')">Resultado <strong>Liberação de Cilindros</strong></button>
+                <button class="menu-button" onclick="irParaPagina('./choose.html')">
+                    Sistema de <strong>Plaquetas</strong>
+                </button>
+            </div>
+        </main>
+    </div>
 
-
-        <button class="mt-5 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-700" onclick="irParaPagina('./choose.html')">Sistema de <strong>Plaquetas</strong></button>
-
-
-    </main>
-
-</body>
     <script>
         function irParaPagina(url) {
             window.location.href = url;
         }
-
     </script>
+</body>
 </html>
