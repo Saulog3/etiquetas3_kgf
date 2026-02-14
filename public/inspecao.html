@@ -2,107 +2,75 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Registro de Inspeção Final</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #babbc5;
-      padding: 20px;
-    }
-
-    .form-container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    input, textarea, select {
-      width: 95%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .checkboxes {
-      margin-top: 10px;
-    }
-
-    .checkboxes label {
-      font-weight: normal;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: green;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .result {
-      margin-top: 20px;
-      background: #e0ffe0;
-      padding: 10px;
-      border-radius: 5px;
-      display: none;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Inspecao Final</title>
+  <link rel="stylesheet" href="style/style-inspecao-consulta.css">
 </head>
 <body>
-  <div class="form-container">
-    <h2>Registro de Inspeção Final</h2>
-    <form id="formInspecao">
-      <label>ID do Cilindro / OS</label>
-      <input type="text" id="cilindroId" required>
+  <div class="page-shell">
+    <header class="topbar">
+      <h1>Controle de Qualidade - Registro de Inspeção Final</h1>
+    </header>
 
+    <main class="card">
+      <div class="card-body">
+        <h2 class="section-title">Formulario de Inspecao</h2>
 
-      <label>Data da Inspeção</label>
-      <input type="datetime-local" id="data" required>
+        <form id="formInspecao" class="form-grid">
+          <div class="field">
+            <label for="cilindroId">ID do Cilindro / OS</label>
+            <input type="text" id="cilindroId" required>
+          </div>
 
-      <label>Inspetor</label>
-      <select name="inspetor" id="inspetor" required>
-        <option value="">Selecione</option>
-        <option value="Clovis de Assis">Clovis de Assis</option>
-        <option value="Gilson Gonlçalves">Gilson Gonlçalves</option>
-        <option value="Saulo Cunha">Saulo Cunha</option>
-        <option value="Thiago Barbosa">Thiago Barbosa</option>
-      </select>
+          <div class="field">
+            <label for="data">Data da Inspecao</label>
+            <input type="datetime-local" id="data" required>
+          </div>
 
-      <label>Itens Verificados</label>
-      <div class="checkboxes">
-        <label><input type="checkbox" value="Pintura"> Pintura</label>
-        <label><input type="checkbox" value="Travamento"> Travamento</label>
-        <label><input type="checkbox" value="Dimensões"> Dimensões</label>
-        <label><input type="checkbox" value="Acabamento"> Acabamento</label>
+          <div class="field full">
+            <label for="inspetor">Inspetor</label>
+            <select name="inspetor" id="inspetor" required>
+              <option value="">Selecione</option>
+              <option value="Clovis de Assis">Clovis de Assis</option>
+              <option value="Gilson Gonçalves">Gilson Gonçalves</option>
+              <option value="Saulo Cunha">Saulo Cunha</option>
+              <option value="Thiago Barbosa">Thiago Barbosa</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <span class="legend">Itens Verificados</span>
+            <div class="check-grid">
+              <label class="check-item"><input type="checkbox" value="Pintura">Pintura</label>
+              <label class="check-item"><input type="checkbox" value="Travamento">Travamento</label>
+              <label class="check-item"><input type="checkbox" value="Dimensoes">Dimensoes</label>
+              <label class="check-item"><input type="checkbox" value="Acabamento">Acabamento</label>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="obs">Observacoes</label>
+            <textarea id="obs" rows="3"></textarea>
+          </div>
+
+          <div class="field full">
+            <label for="resultado">Resultado</label>
+            <select id="resultado" required>
+              <option value="">Selecione</option>
+              <option value="Aprovado">Aprovado</option>
+              <option value="Aprovado com Restri��es">Aprovado com Restricoes</option>
+              <option value="Reprovado">Reprovado</option>
+            </select>
+          </div>
+
+          <div class="field full actions">
+            <button type="submit" class="btn-primary">Registrar</button>
+          </div>
+        </form>
+
+        <div class="resultado" id="mensagem"></div>
       </div>
-
-      <label>Observações</label>
-      <textarea id="obs" rows="3"></textarea>
-
-      <label>Resultado</label>
-      <select id="resultado" required>
-        <option value="">Selecione</option>
-        <option value="Aprovado">Aprovado</option>
-        <option value="Aprovado com Restrições">Aprovado com Restrições</option>
-        <option value="Reprovado">Reprovado</option>
-      </select>
-
-      <button type="submit">Registrar</button>
-    </form>
-
-    <div class="resultado" id="mensagem"></div>
+    </main>
   </div>
 
   <script>
@@ -122,25 +90,25 @@
 
       try {
         const resposta = await fetch('http://192.168.0.146:3000/api/inspecao', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(dados)
-})
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
 
         const msg = document.getElementById('mensagem');
+        msg.style.display = 'block';
+
         if (resposta.ok) {
-          msg.style.display = 'block';
-          msg.style.background = '#e0ffe0';
-          msg.textContent = 'Inspeção registrada com sucesso!';
+          msg.className = 'resultado success';
+          msg.textContent = 'Inspecao registrada com sucesso!';
           document.getElementById('formInspecao').reset();
         } else {
-          msg.style.display = 'block';
-          msg.style.background = '#ffe0e0';
-          msg.textContent = 'Erro ao registrar inspeção.';
+          msg.className = 'resultado error';
+          msg.textContent = 'Erro ao registrar inspecao.';
         }
       } catch (erro) {
         console.error('Erro:', erro);
-        alert('Erro na conexão com o servidor.');
+        alert('Erro na conexao com o servidor.');
       }
     });
   </script>
