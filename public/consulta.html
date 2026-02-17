@@ -38,7 +38,7 @@
             <select id="filtroResultado">
               <option value="">Todos</option>
               <option value="Aprovado">Aprovado</option>
-              <option value="Aprovado com Restri��es">Aprovado com Restrições</option>
+              <option value="Aprovado com Restrições">Aprovado com Restrições</option>
               <option value="Reprovado">Reprovado</option>
             </select>
           </div>
@@ -63,7 +63,7 @@
                 <th>Data</th>
                 <th>Itens</th>
                 <th>Resultado</th>
-                <th>Observacoes</th>
+                <th>Observações</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -85,7 +85,7 @@
     function classeResultado(valor) {
       const v = normalizarTexto(valor);
       if (v === 'aprovado') return 'tag-aprovado';
-      if (v.includes('restric')) return 'tag-aprovado-restricoes';
+      if (v.includes('restric')) return 'tag-aprovado-restrições';
       return 'tag-reprovado';
     }
 

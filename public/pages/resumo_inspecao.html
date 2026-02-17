@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../style/style-index.css">
     <title>Inspeção Semanal</title>
     <style>
         iframe {
             justify-content: center;
             text-align: center;
-        }
-
-        body {
-            justify-content: center;
-            margin: auto;
-            /* text-align: center; */
-
+            border-radius: 15px; /* Arredonda os cantos */
+            border: 1px solid #ddd; /* Opcional: adiciona uma borda fina */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Opcional: adiciona uma sombra suave */
+            overflow: hidden; /* Garante que o conteúdo não "vaze" pelos cantos */
         }
         .dash {
             display: flex;
@@ -22,11 +20,19 @@
             align-content: center;
             flex-direction: column;
         }
+        .menu-title {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <header class="topbar">
+        <img class="logo" src="../img/Logo KGF - BG - Removed - Adjusted.png" alt="Logo KGF">
+        <h1 class="title">CONTROLE DE QUALIDADE - KGF HIDRAULICOS</h1>
+    </header>
+    <h2 class="menu-title">Inspeção de Peças</h2>
     <div class="dash">
-        <iframe class="" title="CONTROLE DE PEÇAS - 2025" width="1100" height="800" src="https://app.powerbi.com/view?r=eyJrIjoiN2FmOWZjODctNzI4Ni00MzdjLTk0ZDgtNGVmYzE5MjhmZGU3IiwidCI6IjAxNzc5NGY5LTk0ODQtNDFkOC1iYzFlLTdkNzAxMGUxYTMwZCJ9" frameborder="0" allowFullScreen="true"></iframe>
+        <iframe class="" title="CONTROLE DE PEÇAS - 2025" width="600" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiN2FmOWZjODctNzI4Ni00MzdjLTk0ZDgtNGVmYzE5MjhmZGU3IiwidCI6IjAxNzc5NGY5LTk0ODQtNDFkOC1iYzFlLTdkNzAxMGUxYTMwZCJ9" frameborder="0" allowFullScreen="true"></iframe>
     </div>
 </body>
 </html>
