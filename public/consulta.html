@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consulta de Inspecoes</title>
+  <title>Consulta de Inspeções</title>
   <link rel="stylesheet" href="style/style-inspecao-consulta.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
             <select name="inspetor" id="filtroInspetor">
               <option value="">Todos</option>
               <option value="Clovis de Assis">Clovis de Assis</option>
-              <option value="Gilson Gonçalves">Gilson Gonçalves</option>
+              <option value="Gilson Goncalves">Gilson Gonçalves</option>
               <option value="Saulo Cunha">Saulo Cunha</option>
               <option value="Thiago Barbosa">Thiago Barbosa</option>
             </select>
@@ -38,7 +38,7 @@
             <select id="filtroResultado">
               <option value="">Todos</option>
               <option value="Aprovado">Aprovado</option>
-              <option value="Aprovado com Restrições">Aprovado com Restrições</option>
+              <option value="Aprovado com Restricoes">Aprovado com Restrições</option>
               <option value="Reprovado">Reprovado</option>
             </select>
           </div>
@@ -85,7 +85,7 @@
     function classeResultado(valor) {
       const v = normalizarTexto(valor);
       if (v === 'aprovado') return 'tag-aprovado';
-      if (v.includes('restric')) return 'tag-aprovado-restrições';
+      if (v.includes('restric')) return 'tag-aprovado-restricoes';
       return 'tag-reprovado';
     }
 
