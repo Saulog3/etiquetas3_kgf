@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Plaquetas</title>
+    <title>Menu - Sistema Qualidade</title>
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style/style-index.css">
 </head>
@@ -29,16 +29,19 @@
         <br>
 
         <div class="menu-card" aria-label="Menu principal">
-            <h2 class="menu-title">Consultas</h2>
+            <h2 class="menu-title">Relatórios</h2>
             <div class="menu-grid menu-grid-3">
                 <button class="menu-button" onclick="irParaPagina('../pages/libcilindros.html')">
                     Resumo <strong>Liberação de Cilindros</strong>
                 </button>
-                <button class="menu-button" onclick="irParaPagina('../pages/resumo_inspecao.html')">
+                <button class="menu-button" onclick="irParaPagina('../pages/resumo_inspecao_pecas.html')">
                     Resumo - <strong>Inspeção de Peças</strong>
                 </button>
                 <button class="menu-button" onclick="irParaPagina('./consulta.html')">
                     Consulta de <strong>Inspeções</strong>
+                </button>
+                <button class="menu-button" onclick="irParaPagina('../pages/resumo_analise_garantias.html')">
+                    Resumo de <strong>Garantias</strong>
                 </button>
             </div>
         </div>
