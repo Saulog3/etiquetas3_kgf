@@ -73,6 +73,10 @@ exports.listarInspecoes = async ({ inspetor, resultado, cilindro_id: cilindroIdQ
 
   return resultados.map((item) => ({
     ...item,
-    itens: item.itens ? JSON.parse(item.itens) : []
+    itens: Array.isArray(item.itens)
+      ? item.itens
+      : item.itens
+        ? JSON.parse(item.itens)
+        : []
   }));
 };
